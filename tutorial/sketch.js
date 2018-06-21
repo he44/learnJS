@@ -6,7 +6,8 @@ let stars = [];
 
 function setup() {
 	createCanvas(var_width, var_height);
-	let num = random(20, 40);
+	// let num = random(20, 40);
+	let num = 10;
 	for (let i = 0; i < num; i++){
 		stars[i] = new star(random(20,40));
 	}
@@ -15,7 +16,7 @@ function setup() {
 function draw() {
 	background(0);
 	for (let star of stars) {
-		star.blink();
+		// star.blink();
 		if(star.inbound(mouseX, mouseY)){star.changeColor();}
 		star.display();
 	}
@@ -47,7 +48,7 @@ class star {
 		this.color = color(random(0,255), random(0,255), random(0,255));
 	}
 	inbound(x, y){
-		return(dist(x, y, this.x, this.y) < this.size);
+		return(dist(x, y, this.x, this.y) < this.size/2);
 	}
 	display(){
 		stroke(255);
