@@ -29,7 +29,7 @@ class Clock {
             this.hour -= 12;
         }
         if(this.hour != 0){
-            let hour_angle = map(this.hour, 0, 12, -PI/2, 3*PI/2);
+            let hour_angle = map(this.hour * 60 + this.minute, 0, 720, -PI/2, 3*PI/2);
             strokeWeight(8);
             stroke(green);
             noFill();
@@ -37,7 +37,7 @@ class Clock {
         }
         //  Getting the minute drawn
         if(this.minute != 0){
-            let minute_angle = map(this.minute, 0, 60, -PI/2, 3*PI/2);
+            let minute_angle = map(this.minute * 60 + this.second, 0, 3600, -PI/2, 3*PI/2);
             strokeWeight(8);
             stroke(purple);
             noFill();

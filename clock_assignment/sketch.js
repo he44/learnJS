@@ -18,7 +18,6 @@ function setup() {
 function draw() {
 	background(50);
 	clock.getCurrentTime();
-	// clock.hour = 18;
 	// clock.displayTimeAsText();
 	clock.displayTimeAsCircle();
 }
