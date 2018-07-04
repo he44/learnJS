@@ -1,6 +1,6 @@
 class Board{
     constructor(){
-        this.food = createVector(10, 10);
+        this.food = createVector(parseInt(random(grid_col)), parseInt(random(grid_row)));
     }
     show(){
         noStroke();

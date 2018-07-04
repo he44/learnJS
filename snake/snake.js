@@ -7,7 +7,7 @@ class Body{
     show(){
         noStroke();
         fill(255);
-        rect(this.x * cell_size, this.y * cell_size, cell_size, cell_size);
+        rect(this.x * cell_size, this.y * cell_size, cell_size*9/10, cell_size*9/10);
     }
 }
 
@@ -16,9 +16,7 @@ class Snake{
         // list of Body objects, representing the body of the snake
         this.bodys = []; 
         // create the head of the snake at random location
-        let head_x = parseInt(random(grid_col));
-        let head_y = parseInt(random(grid_row));
-        let head = new Body(head_x, head_y); 
+        let head = new Body(10, 10); 
         this.bodys.push(head);
         this.head = head;
         // snake stays at starting point without user input
@@ -62,27 +60,29 @@ class Snake{
         }
         // if head is hittng any other parts of the bodys
     }
-    //  @TODO:
     eat(board){
         // check if the head gets food
         if(this.head.x == board.food.x && 
            this.head.y == board.food.y){
             // get the last element and push a new cell in the opposite direction
             let last_body = this.bodys[this.bodys.length-1];
-            // console.log(last_body.dir);
+            console.log(this.bodys);
             switch (last_body.dir){
                 case 0: //adding one on the left
                     this.bodys.push(new Body(last_body.x - 1, last_body.y));
+                    break;
                 case 1: // adding one on the top
                     this.bodys.push(new Body(last_body.x, last_body.y - 1));
+                    break;
                 case 2: // adding one on the right
                     this.bodys.push(new Body(last_body.x + 1, last_body.y));
+                    break;
                 case 3: // adding one on the bottom
                     this.bodys.push(new Body(last_body.x, last_body.y + 1));
+                    break;
             }
             board.newFood();
         }
-        // console.log(this.bodys.length); 
     }
     show(){
         for (let body of this.bodys){

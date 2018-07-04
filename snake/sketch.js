@@ -4,8 +4,7 @@ var board_width = 600, board_height = 600;
 var cell_size = 20;
 var grid_col = board_width/cell_size, grid_row = board_height/cell_size;
 //  @TODO: make sure new food does not fall on snake body 
-var hashtable = {};
-
+var filled = [];
 
 function keyPressed(){
 	if (keyCode === DOWN_ARROW){
@@ -23,8 +22,20 @@ function keyPressed(){
 function setup() {
 	createCanvas(board_width, board_height);
 	frameRate(5);
+	// Array to avoid collision in location
+	for (let row = 0; row < grid_row; row++){
+		filled[row] = [];
+		for (let col = 0; col < grid_col; col++){
+			filled[row][col] = false;
+		}
+	}
+	// snake and game board
 	snake = new Snake();
+	filled[snake.head.x][snake.head.y] = true;
 	board = new Board();
+	while(filled[board.food.x][board.food.y] == true){
+		borad = new Board();
+	}
 }
 
 function draw() {
