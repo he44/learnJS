@@ -49,11 +49,14 @@ class Snake{
         next_step.x = this.head.x + this.xspeed;
         next_step.y = this.head.y + this.yspeed;
         this.bodys.unshift(next_step);
+        filled[next_step.x][next_step.y] = true;
         // remove the last element from the bodys list
-        this.bodys.pop()
+        let discarded = this.bodys.pop()
+        filled[discarded.x][discarded.y] = false;
         // remap head to the front of the bodys list
         this.head = this.bodys[0];
-        // if head is out of bound
+        // @TODO: return a value to represent the ending phase
+        // if head is out of bound, should go into ending page
         if (this.head.x > grid_col || this.head.y > grid_row ||
             this.head.x < 0 || this.head.y < 0){
                 console.log("Game Over!");

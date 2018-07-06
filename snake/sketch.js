@@ -3,7 +3,6 @@ let board;
 var board_width = 600, board_height = 600;
 var cell_size = 20;
 var grid_col = board_width/cell_size, grid_row = board_height/cell_size;
-//  @TODO: make sure new food does not fall on snake body 
 var filled = [];
 
 function keyPressed(){
