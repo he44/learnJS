@@ -4,6 +4,7 @@ var board_width = 600, board_height = 600;
 var cell_size = 20;
 var grid_col = board_width/cell_size, grid_row = board_height/cell_size;
 var filled = [];
+var state = 0;
 
 function keyPressed(){
 	if (keyCode === DOWN_ARROW){
@@ -39,7 +40,12 @@ function setup() {
 
 function draw() {
 	background(50);
-	snake.move();
+	state = snake.move();
+	// @TODO: we have to check the value here in every draw() function
+	if(state == 0){
+		console.log(state);
+		return;
+	}
 	snake.eat(board);
 	snake.show();
 	board.show();

@@ -49,19 +49,25 @@ class Snake{
         next_step.x = this.head.x + this.xspeed;
         next_step.y = this.head.y + this.yspeed;
         this.bodys.unshift(next_step);
+        // to avoid accessing some non-existent memory, we need to check
+        // whether the snake hits the wall here
+        // @TODO: return a value to represent the ending phase
+        // if head is out of bound, should go into ending page
+        if (next_step.x > grid_col || next_step.y > grid_row ||
+            next_step.x < 0 || next_step.y < 0){
+                console.log("Game Over!");
+                return -1;
+        }
+        // @TODO: we want to distinguish between head on food vs head on body
+        if (filled[next_step.x][next_step.y] == true){
+        }
         filled[next_step.x][next_step.y] = true;
         // remove the last element from the bodys list
         let discarded = this.bodys.pop()
         filled[discarded.x][discarded.y] = false;
         // remap head to the front of the bodys list
         this.head = this.bodys[0];
-        // @TODO: return a value to represent the ending phase
-        // if head is out of bound, should go into ending page
-        if (this.head.x > grid_col || this.head.y > grid_row ||
-            this.head.x < 0 || this.head.y < 0){
-                console.log("Game Over!");
-        }
-        // if head is hittng any other parts of the bodys
+        return 0;
     }
     eat(board){
         // check if the head gets food
