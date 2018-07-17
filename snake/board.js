@@ -7,7 +7,7 @@ class Board{
         fill(255, 100, 0);
         rect(this.food.x * cell_size, this.food.y * cell_size, cell_size, cell_size);
     }
-    newFood(){
+    newFood(filled){
         // new food piece won't fall on snake body
         while (filled[this.food.x][this.food.y]){
             this.food.x = parseInt(random(grid_col));

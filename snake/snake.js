@@ -42,7 +42,7 @@ class Snake{
             }
         }
     }
-    move(){
+    move(filled){
         // add one element at the front of the bodys list
         let next_step = new Body();
         next_step.dir = this.head.dir;
@@ -69,7 +69,7 @@ class Snake{
         this.head = this.bodys[0];
         return 0;
     }
-    eat(board){
+    eat(board, filled){
         // check if the head gets food
         if(this.head.x == board.food.x && 
            this.head.y == board.food.y){
@@ -90,7 +90,7 @@ class Snake{
                     this.bodys.push(new Body(last_body.x, last_body.y + 1));
                     break;
             }
-            board.newFood();
+            board.newFood(filled);
         }
     }
     show(){
