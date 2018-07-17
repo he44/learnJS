@@ -8,16 +8,6 @@ var state = 0;
 
 function keyPressed(){
 	game.listentoUser(keyCode);
-	// if (keyCode === DOWN_ARROW){
-	// 	snake.changeDir(1);
-	// } else if (keyCode === UP_ARROW){
-	// 	snake.changeDir(3);
-	// } else if (keyCode === LEFT_ARROW){
-	// 	snake.changeDir(2);
-	// } else if (keyCode === RIGHT_ARROW){
-	// 	snake.changeDir(0);
-	// }
-	
 }
 
 
