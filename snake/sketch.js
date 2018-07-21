@@ -4,7 +4,10 @@ var board_width = 600, board_height = 600;
 var cell_size = 20;
 var grid_col = board_width/cell_size, grid_row = board_height/cell_size;
 var filled = [];
-var state = 0;
+const GAME_START = 0;
+const GAME_PAUSE = 1;
+const GAME_END = 2;
+const GAME_PLAY = 3;
 
 function keyPressed(){
 	game.listentoUser(keyCode);
@@ -22,7 +25,18 @@ function setup() {
 }
 
 function draw() {
-	background(50);
-	// @TODO: we have to check the value here in every draw() function
-	game.update();
+	switch(game.state){
+		case GAME_START:
+			background(50);
+			game.start();
+			break;
+		case GAME_END:
+			break;
+		case GAME_PAUSE:
+			break;
+		case GAME_PLAY:
+			background(50);
+			game.update();
+			break;
+	}
 }

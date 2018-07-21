@@ -13,9 +13,9 @@ function draw(){
 
 class Game{
     constructor(){
-        this.board = new Board();
-        this.snake = new Snake();
-        this.state = 0;
+        this.board = new Board(); // food location
+        this.snake = new Snake(); // snake body
+        this.state = GAME_START;
         // Arrays to avoid collision in location
         this.filled = [];
         for (let row = 0; row < grid_row; row++){
@@ -35,10 +35,14 @@ class Game{
             this.snake.changeDir(2);
         } else if (key === RIGHT_ARROW){
             this.snake.changeDir(0);
+        } else if (key === ESCAPE){
+            //@TODO: check doc about escape keycode
+            this.pause();
+        } else if (key === ENTER){
+            if (this.state === GAME_START){
+                this.state = GAME_PLAY;
+            }
         }
-        // } else if (key === ESC){
-        //     //@TODO: check doc about escape keycode
-        // }
     }
     // handles snake moving in direction, eating fruit, chcking boundaries and conflicts
     update(){
@@ -50,5 +54,23 @@ class Game{
     show(){
         this.board.show();
         this.snake.show();
+    }
+    pause(){
+        background(50);         
+        while(true){}
+    }
+    start(){
+        textSize(40);
+        let str = 'Press Enter to Start';
+        // let str_height = textAscent(str) + textDescent(str);
+        // let str_width = textWidth(str);
+        // noStroke();
+        // fill(0);
+        // rect(100, 250, 400, 100);
+        fill(0, 102, 153);
+        text(str, 100, 250);
+    }
+    end(){
+
     }
 }
