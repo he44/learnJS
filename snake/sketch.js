@@ -27,16 +27,17 @@ function setup() {
 function draw() {
 	switch(game.state){
 		case GAME_START:
-			background(50);
 			game.start();
 			break;
 		case GAME_END:
+			game.end();
 			break;
 		case GAME_PAUSE:
 			break;
 		case GAME_PLAY:
 			background(50);
-			game.update();
+			let res = game.update();
+			if (res == -1){game.state = GAME_END;}
 			break;
 	}
 }

@@ -53,9 +53,8 @@ class Snake{
         // whether the snake hits the wall here
         // @TODO: return a value to represent the ending phase
         // if head is out of bound, should go into ending page
-        if (next_step.x > grid_col || next_step.y > grid_row ||
+        if (next_step.x >= grid_col || next_step.y >= grid_row ||
             next_step.x < 0 || next_step.y < 0){
-                console.log("Game Over!");
                 return -1;
         }
         // @TODO: we want to distinguish between head on food vs head on body

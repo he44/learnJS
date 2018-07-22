@@ -36,7 +36,6 @@ class Game{
         } else if (key === RIGHT_ARROW){
             this.snake.changeDir(0);
         } else if (key === ESCAPE){
-            //@TODO: check doc about escape keycode
             this.pause();
         } else if (key === ENTER){
             if (this.state === GAME_START){
@@ -46,9 +45,10 @@ class Game{
     }
     // handles snake moving in direction, eating fruit, chcking boundaries and conflicts
     update(){
-        this.snake.move(this.filled);
+        let snake_state = this.snake.move(this.filled);
         this.snake.eat(this.board, this.filled);
         this.show();
+        return snake_state;
     }
     // draw the game (snake and baord) properly
     show(){
@@ -60,6 +60,7 @@ class Game{
         while(true){}
     }
     start(){
+		background(50);
         textSize(40);
         let str = 'Press Enter to Start';
         // let str_height = textAscent(str) + textDescent(str);
@@ -71,6 +72,11 @@ class Game{
         text(str, 100, 250);
     }
     end(){
-
+        textSize(40);
+        let str = 'Game Over!';
+        let str_width = textWidth(str);
+        let start_x = (board_width - str_width)/2;
+        fill(0, 102, 153);
+        text(str, start_x, 300);
     }
 }
