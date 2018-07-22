@@ -10,6 +10,15 @@ function draw(){
 }
 */
 
+/*
+@TODO:
+1.) Check the conditon when snake head hits snake body. It should end the game
+2.) Wierd issue when you try to do a two line snake at the boundary
+    * * * * _ _ _ _
+    * * * * _ _ _ _
+    the head is the top left corner
+    There is a memory error here.
+*/
 
 class Game{
     constructor(){
@@ -36,9 +45,11 @@ class Game{
         } else if (key === RIGHT_ARROW){
             this.snake.changeDir(0);
         } else if (key === ESCAPE){
-            this.pause();
+            this.state = GAME_PAUSE;
         } else if (key === ENTER){
             if (this.state === GAME_START){
+                this.state = GAME_PLAY;
+            } else if (this.state === GAME_PAUSE){
                 this.state = GAME_PLAY;
             }
         }
@@ -56,22 +67,32 @@ class Game{
         this.snake.show();
     }
     pause(){
-        background(50);         
-        while(true){}
+        textSize(40);
+        let str = 'Press Enter to Resume';
+        let str_width = textWidth(str);
+        let start_x = (board_width - str_width)/2;
+        fill(0, 102, 153);
+        text(str, start_x, 300);
+        // textSize(40);
+        // let str = 'Press Enter to Resume';
+        // let str_width = textWidth(str);
+        // fill(0, 102, 153);
+        // text(str, (board_width - str_width)/2, 250);
     }
     start(){
-		background(50);
+        background(50);
         textSize(40);
         let str = 'Press Enter to Start';
         // let str_height = textAscent(str) + textDescent(str);
-        // let str_width = textWidth(str);
+        let str_width = textWidth(str);
         // noStroke();
         // fill(0);
         // rect(100, 250, 400, 100);
         fill(0, 102, 153);
-        text(str, 100, 250);
+        text(str, (board_width - str_width)/2, 250);
     }
     end(){
+        // we want to keep the "ending screenshot" on the canvas --> no erasing
         textSize(40);
         let str = 'Game Over!';
         let str_width = textWidth(str);

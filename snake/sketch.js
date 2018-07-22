@@ -33,6 +33,7 @@ function draw() {
 			game.end();
 			break;
 		case GAME_PAUSE:
+			game.pause();
 			break;
 		case GAME_PLAY:
 			background(50);

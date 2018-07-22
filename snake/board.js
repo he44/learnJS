@@ -13,5 +13,7 @@ class Board{
             this.food.x = parseInt(random(grid_col));
             this.food.y = parseInt(random(grid_row));
         }
+        // Note: we don't want to mark the "food" as an occupied space
+        // because the snake head and the food can be on one tile 
     }
 }

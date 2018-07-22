@@ -49,16 +49,19 @@ class Snake{
         next_step.x = this.head.x + this.xspeed;
         next_step.y = this.head.y + this.yspeed;
         this.bodys.unshift(next_step);
-        // to avoid accessing some non-existent memory, we need to check
-        // whether the snake hits the wall here
-        // @TODO: return a value to represent the ending phase
         // if head is out of bound, should go into ending page
         if (next_step.x >= grid_col || next_step.y >= grid_row ||
             next_step.x < 0 || next_step.y < 0){
                 return -1;
         }
-        // @TODO: we want to distinguish between head on food vs head on body
-        if (filled[next_step.x][next_step.y] == true){
+        // Note: 
+        // 1.) we don't need to distinguish between snake body and food,
+        // because food location is never marked as occupied
+        // 2.) the snake speed will be both 0 when the game just started,
+        // that way the filled[] always gives true since the snake is not
+        // moving. We want to check that.
+        if (this.xspeed != 0 && this.yspeed != 0 && filled[next_step.x][next_step.y] == true){
+            return -1;
         }
         filled[next_step.x][next_step.y] = true;
         // remove the last element from the bodys list
