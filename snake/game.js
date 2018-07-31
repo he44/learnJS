@@ -12,11 +12,15 @@ function draw(){
 
 /*
 @TODO:
-1.) Wierd issue when you try to do a two line snake at the boundary
+1.) check that game.filled[] is being properly updated, kinda confused right now
+Q: did I update the filled[] after a new cell is added to the snake body?
+
+2.) Wierd issue when you try to do a two line snake at the boundary
     * * * * _ _ _ _
     * * * * _ _ _ _
     the head is the top left corner
     There is a memory error here.
+    Failed to recreate the problem
 */
 
 class Game{
@@ -32,6 +36,8 @@ class Game{
                 this.filled[row][col] = false;
             }
         }
+        // mark head as occupied
+        this.filled[this.snake.head.x][this.snake.head.y] = true;
     }
     // handles changing direction, pause, quit
     listentoUser(key){
@@ -50,6 +56,9 @@ class Game{
                 this.state = GAME_PLAY;
             } else if (this.state === GAME_PAUSE){
                 this.state = GAME_PLAY;
+            } else if (this.state === GAME_END){
+                this.restart();
+                this.state = GAME_PLAY;
             }
         }
     }
@@ -64,6 +73,19 @@ class Game{
     show(){
         this.board.show();
         this.snake.show();
+    }
+    restart(){
+        this.board = new Board(); // food location
+        this.snake = new Snake(); // snake body
+        // Arrays to avoid collision in location
+        for (let row = 0; row < grid_row; row++){
+            this.filled[row] = [];
+            for (let col = 0; col < grid_col; col++){
+                this.filled[row][col] = false;
+            }
+        }
+        // mark head as occupied
+        this.filled[this.snake.head.x][this.snake.head.y] = true;
     }
     pause(){
         textSize(40);
@@ -93,10 +115,14 @@ class Game{
     end(){
         // we want to keep the "ending screenshot" on the canvas --> no erasing
         textSize(40);
-        let str = 'Game Over!';
-        let str_width = textWidth(str);
-        let start_x = (board_width - str_width)/2;
+        let str1 = 'Game Over!'
+        let str2 = 'Press Enter to Restart!';
+        let str1_width = textWidth(str1);
+        let str2_width = textWidth(str2);
+        let start1_x = (board_width - str1_width)/2;
+        let start2_x = (board_width - str2_width)/2;
         fill(0, 102, 153);
-        text(str, start_x, 300);
+        text(str1, start1_x, 275);
+        text(str2, start2_x, 325);
     }
 }

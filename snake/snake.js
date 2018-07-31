@@ -64,7 +64,7 @@ class Snake{
         // but hasn't givenn any instructions yet. In that case, the next_step
         // will always be the same as current location
         if ((this.xspeed+this.yspeed) != 0 && filled[next_step.x][next_step.y] == true){
-            console.log("Here");
+            // console.log("Here");
             return -1;
         }
         filled[next_step.x][next_step.y] = true;
