@@ -14,7 +14,6 @@ function draw(){
 @TODO:
 1.) check that game.filled[] is being properly updated, kinda confused right now
 Q: did I update the filled[] after a new cell is added to the snake body?
-
 2.) Wierd issue when you try to do a two line snake at the boundary
     * * * * _ _ _ _
     * * * * _ _ _ _
