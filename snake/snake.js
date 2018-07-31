@@ -60,7 +60,11 @@ class Snake{
         // 2.) the snake speed will be both 0 when the game just started,
         // that way the filled[] always gives true since the snake is not
         // moving. We want to check that.
-        if (this.xspeed != 0 && this.yspeed != 0 && filled[next_step.x][next_step.y] == true){
+        // 3.) we need to rule out the situation where user starts the game
+        // but hasn't givenn any instructions yet. In that case, the next_step
+        // will always be the same as current location
+        if ((this.xspeed+this.yspeed) != 0 && filled[next_step.x][next_step.y] == true){
+            console.log("Here");
             return -1;
         }
         filled[next_step.x][next_step.y] = true;

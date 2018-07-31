@@ -12,8 +12,7 @@ function draw(){
 
 /*
 @TODO:
-1.) Check the conditon when snake head hits snake body. It should end the game
-2.) Wierd issue when you try to do a two line snake at the boundary
+1.) Wierd issue when you try to do a two line snake at the boundary
     * * * * _ _ _ _
     * * * * _ _ _ _
     the head is the top left corner
