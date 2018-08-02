@@ -1,6 +1,6 @@
 class Game{
     constructor(){
-
+        this.state = GAME_START;
     }
     listentoUser(key){
     
