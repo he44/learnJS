@@ -14,12 +14,18 @@ function draw(){
 @TODO:
 1.) check that game.filled[] is being properly updated, kinda confused right now
 Q: did I update the filled[] after a new cell is added to the snake body?
+A: no, but once the snake gets moving again, the filled[] is updated
 2.) Wierd issue when you try to do a two line snake at the boundary
     * * * * _ _ _ _
     * * * * _ _ _ _
     the head is the top left corner
     There is a memory error here.
     Failed to recreate the problem
+*/
+/*
+@SUMMARY:
+I will leave this game as it is. Will start working on Tetris. Structure should be 
+simiilar
 */
 
 class Game{
