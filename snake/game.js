@@ -46,13 +46,13 @@ class Game{
     }
     // handles changing direction, pause, quit
     listentoUser(key){
-        if (key === DOWN_ARROW){
+        if (key === KeyS){
             this.snake.changeDir(1);
-        } else if (key === UP_ARROW){
+        } else if (key === KeyW){
             this.snake.changeDir(3);
-        } else if (key === LEFT_ARROW){
+        } else if (key === KeyA){
             this.snake.changeDir(2);
-        } else if (key === RIGHT_ARROW){
+        } else if (key === KeyD){
             this.snake.changeDir(0);
         } else if (key === ESCAPE){
             this.state = GAME_PAUSE;
