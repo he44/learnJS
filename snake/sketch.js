@@ -9,10 +9,22 @@ const GAME_PAUSE = 1;
 const GAME_END = 2;
 const GAME_PLAY = 3;
 
+
+function keyTyped(){
+	if (key == 's'){
+		game.snake.changeDir(1);
+	} else if (key == 'w'){
+		game.snake.changeDir(3);
+	} else if (key == 'a'){
+		game.snake.changeDir(2);
+	} else if (key == 'd'){
+		game.snake.changeDir(0);
+	}
+}
+
 function keyPressed(){
 	game.listentoUser(keyCode);
 }
-
 
 function setup() {
 	createCanvas(board_width, board_height);
